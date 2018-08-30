@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var $ = {
+            loadScript: function(url) {
+                var script = document.createElement('script');
+                script.src = url;
+                document.body.appendChild(script);
+                document.body.removeChild(script);
+            },
+            jsonp: function(opt) {
+                //1.格式化url
+                var url = opt.url;
+                var cbKey = opt.jsonp || 'callback';
+                if (url.indexOf('?' + cbKey + '=?') === -1) {
+                    url = url + '?' + cbKey + '=?';
+                };
+                var cbName = 'callbackName' + Math.random().toString().substr(2, 10);
+                var reg = new RegExp('' + cbKey + '=\\?');
+                url = url.replace(reg, cbKey + '=' + cbName) + '&_=' + Date.now();
+                //2.发起请求 
+                this.loadScript(url);
+                //3.定义函数接受后台响应值
+                window[cbName] = function(data) {
+                    typeof opt.success === 'function' && opt.success(data);
+                    window[cbName] = null;
+                }
+            }
+        };
+        $.jsonp({
+            url: 'http://localhost:8888',
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    </script>
+</body>
+
+</html>
