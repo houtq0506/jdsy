@@ -1,0 +1,113 @@
+@import "_minix.scss";
+@import "common.scss";
+body,
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    font-size: pxTorem(14px);
+    @include box_flex;
+    @include direction(column);
+}
+
+header {
+    width: 100%;
+    height: pxTorem(44px);
+    padding: pxTorem(8px) auto;
+    @include sizing;
+    background: green;
+    @include box_flex;
+    @include align;
+    color: #fff;
+    p {
+        width: 20%;
+        text-align: center;
+        &:nth-of-type(1) span {
+            margin-right: pxTorem(8px);
+        }
+    }
+    .cen {
+        @include flex;
+        height: pxTorem(30px);
+        line-height: pxTorem(30px);
+        background: #ccc;
+        padding-left: pxTorem(10px);
+        font-size: pxTorem(12px);
+    }
+}
+
+section {
+    width: 100%;
+    flex: 1;
+    overflow: auto;
+    .nav {
+        width: 100%;
+        img {
+            width: 100%;
+            height: pxTorem(120px);
+            background-size: 100% 100%;
+        }
+    }
+    .swiper-container,
+    .swiper-wrapper,
+    .swiper-slide {
+        width: 100%;
+        height: auto;
+    }
+    .cent {
+        @include box_flex;
+        flex-wrap: wrap;
+        text-align: center;
+        dl {
+            width: 20%;
+            padding-top: pxTorem(8px);
+        }
+    }
+    h5 {
+        height: pxTorem(40px);
+        line-height: pxTorem(40px);
+        width: 100%;
+        margin: 0 auto;
+        border-bottom: solid 1px #ccc;
+        padding-left: pxTorem(20px);
+        @include sizing;
+    }
+    .maib {
+        width: 92%;
+        margin: 0 auto;
+        dl {
+            width: 100%;
+            height: pxTorem(80px);
+            margin-bottom: pxTorem(20px);
+            @include box_flex;
+            dt {
+                width: 20%;
+                img {
+                    width: 100%;
+                }
+            }
+            dd {
+                flex: 1;
+                p {
+                    line-height: pxTorem(36px);
+                    width: 100%;
+                    @include box_flex;
+                    @include justify(space-between);
+                    span>b {
+                        color: green;
+                        font-size: pxTorem(16px);
+                    }
+                }
+            }
+        }
+    }
+    .footer {
+        width: 100%;
+        height: pxTorem(10px);
+    }
+}
